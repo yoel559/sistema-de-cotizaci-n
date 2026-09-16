@@ -1,0 +1,47 @@
+# Entornos virtuales y dependencias
+venv/
+venv_new/
+.venv/
+frontend/venv/
+node_modules/
+__pycache__/
+*.py[cod]
+*$py.class
+.Python
+*.egg-info/
+.pytest_cache/
+.mypy_cache/
+
+# Secretos y entorno local
+.env
+.env.local
+.env.*.local
+*.pem
+
+# Bases de datos y datos locales
+*.db
+*.sqlite
+*.sqlite3
+data/
+uploads/
+media/
+
+# Builds y artefactos
+frontend/build/
+dist/
+portable_build/
+*.log
+
+# IDE y SO
+.idea/
+.vscode/
+.cursor/
+*.swp
+.DS_Store
+Thumbs.db
+
+# Cobertura y caché
+htmlcov/
+.coverage
+.cache/
+.npm/

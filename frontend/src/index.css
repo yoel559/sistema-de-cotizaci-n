@@ -1,0 +1,527 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    font-family: 'Inter', system-ui, sans-serif;
+  }
+  
+  body {
+    @apply bg-base-100;
+    color: rgb(241, 245, 249); /* slate-100 - texto claro por defecto */
+  }
+
+  /* Texto claro por defecto en toda la app - FORZAR */
+  h1, h2, h3, h4, h5, h6, p, span, div, label, a, li, td, th {
+    color: rgb(241, 245, 249) !important; /* slate-100 */
+  }
+
+  /* Forzar texto claro en todos los elementos de formulario */
+  .form-control,
+  .form-control *,
+  .label,
+  .label *,
+  .label-text,
+  .label-text-alt {
+    color: rgb(241, 245, 249) !important;
+  }
+
+  /* Forzar texto claro en todas las tarjetas */
+  .card,
+  .card * {
+    color: rgb(241, 245, 249) !important;
+  }
+
+  /* Excepciones solo para badges y botones que tienen sus propios colores */
+  .badge:not(.badge-ghost),
+  .btn:not(.btn-ghost) {
+    color: inherit !important;
+  }
+}
+
+@layer components {
+  
+  .card-hover {
+    @apply transition-all duration-200 hover:shadow-lg hover:-translate-y-1;
+  }
+
+  /* Estilos modernos para formularios en modo oscuro */
+  .input.input-bordered,
+  .input.input-bordered * {
+    @apply bg-slate-800 border-slate-600;
+    color: rgb(255, 255, 255) !important;
+    placeholder-color: rgb(148, 163, 184) !important;
+  }
+
+  .select.select-bordered,
+  .select.select-bordered *,
+  .select.select-bordered option {
+    @apply bg-slate-800 border-slate-600;
+    color: rgb(255, 255, 255) !important;
+    background-color: rgb(30, 41, 59) !important;
+  }
+
+  .textarea.textarea-bordered,
+  .textarea.textarea-bordered * {
+    @apply bg-slate-800 border-slate-600;
+    color: rgb(255, 255, 255) !important;
+    placeholder-color: rgb(148, 163, 184) !important;
+  }
+
+  /* Forzar texto claro en todos los inputs y selects */
+  input:not([type="checkbox"]):not([type="radio"]),
+  select,
+  textarea {
+    color: rgb(255, 255, 255) !important;
+  }
+
+  input::placeholder,
+  textarea::placeholder {
+    color: rgb(148, 163, 184) !important; /* slate-400 */
+  }
+
+  
+  .status-badge {
+    @apply badge badge-sm font-medium;
+  }
+  
+  .status-draft {
+    @apply status-badge badge-warning;
+  }
+  
+  .status-sent {
+    @apply status-badge badge-info;
+  }
+  
+  .status-accepted {
+    @apply status-badge badge-success;
+  }
+  
+  .status-rejected {
+    @apply status-badge badge-error;
+  }
+  
+  .status-expired {
+    @apply status-badge badge-neutral;
+  }
+
+  /* Tarjetas por defecto en modo oscuro (formularios, paneles, etc.) */
+  .card.bg-base-100 {
+    @apply glass-effect border-gradient text-slate-100;
+  }
+
+  /* Asegurar que todo el texto en tarjetas sea claro */
+  .card.bg-base-100 * {
+    color: rgb(241, 245, 249) !important; /* slate-100 */
+  }
+
+  .card.bg-base-100 label,
+  .card.bg-base-100 .label-text,
+  .card.bg-base-100 .label-text-alt,
+  .card.bg-base-100 h1,
+  .card.bg-base-100 h2,
+  .card.bg-base-100 h3,
+  .card.bg-base-100 h4,
+  .card.bg-base-100 p,
+  .card.bg-base-100 span,
+  .card.bg-base-100 div:not(.badge):not(.btn) {
+    color: rgb(241, 245, 249) !important; /* slate-100 */
+  }
+
+  /* Texto en elementos con fondo oscuro */
+  .glass-effect,
+  .glass-effect * {
+    color: rgb(241, 245, 249) !important;
+  }
+
+  .glass-effect label,
+  .glass-effect .label-text,
+  .glass-effect .label-text-alt {
+    color: rgb(226, 232, 240) !important; /* slate-200 */
+  }
+  
+  .priority-badge {
+    @apply badge badge-xs font-medium;
+  }
+  
+  .priority-low {
+    @apply priority-badge badge-info;
+  }
+  
+  .priority-normal {
+    @apply priority-badge badge-warning;
+  }
+  
+  .priority-high {
+    @apply priority-badge badge-error;
+  }
+  
+  .priority-critical {
+    @apply priority-badge badge-error badge-outline animate-pulse;
+  }
+  
+  .table-responsive {
+    @apply overflow-x-auto;
+  }
+  
+  .loading-spinner {
+    @apply animate-spin rounded-full h-6 w-6 border-b-2;
+    border-color: var(--primary-500);
+  }
+  
+  .fade-in {
+    @apply opacity-0;
+    animation: fadeIn 0.5s ease-in-out forwards;
+  }
+  
+  .slide-up {
+    @apply opacity-0 transform translate-y-4;
+    animation: slideUp 0.5s ease-out forwards;
+  }
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+  
+  .scrollbar-hide {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+  
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;
+  }
+  
+  .glass {
+    @apply bg-white/10 backdrop-blur-md border border-white/20;
+  }
+  
+  .gradient-text {
+    @apply bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent;
+  }
+}
+
+/* Custom animations */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(1rem);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Modern Color Palette and Enhanced Animations - Colores Trebol */
+:root {
+  /* Primary Colors - Azul del logo (SERVICIOS EMPRESARIALES) */
+  --primary-50: #eff6ff;
+  --primary-100: #dbeafe;
+  --primary-200: #bfdbfe;
+  --primary-300: #93c5fd;
+  --primary-400: #60a5fa;
+  --primary-500: #3b82f6;
+  --primary-600: #2563eb;
+  --primary-700: #1d4ed8;
+  --primary-800: #1e40af;
+  --primary-900: #1e3a8a;
+
+  /* Secondary Colors - Rojo del logo (FINANCIAMIENTO AUTOMOTRIZ) */
+  --secondary-50: #fef2f2;
+  --secondary-100: #fee2e2;
+  --secondary-200: #fecaca;
+  --secondary-300: #fca5a5;
+  --secondary-400: #f87171;
+  --secondary-500: #ef4444;
+  --secondary-600: #dc2626;
+  --secondary-700: #b91c1c;
+  --secondary-800: #991b1b;
+  --secondary-900: #7f1d1d;
+
+  /* Accent Colors - Verde del trébol */
+  --accent-50: #f0fdf4;
+  --accent-100: #dcfce7;
+  --accent-200: #bbf7d0;
+  --accent-300: #86efac;
+  --accent-400: #4ade80;
+  --accent-500: #22c55e;
+  --accent-600: #16a34a;
+  --accent-700: #15803d;
+  --accent-800: #166534;
+  --accent-900: #14532d;
+
+  /* Dark Theme Colors */
+  --dark-bg: #0f172a;
+  --dark-surface: #1e293b;
+  --dark-surface-elevated: #334155;
+  --dark-text: #f8fafc;
+  --dark-text-secondary: #cbd5e1;
+  --dark-border: #475569;
+}
+
+/* Enhanced Animations */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeInLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes fadeInRight {
+  from {
+    opacity: 0;
+    transform: translateX(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: -200px 0;
+  }
+  100% {
+    background-position: calc(200px + 100%) 0;
+  }
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+@keyframes glow {
+  0%, 100% {
+    box-shadow: 0 0 5px rgba(37, 99, 235, 0.5);
+  }
+  50% {
+    box-shadow: 0 0 20px rgba(37, 99, 235, 0.8), 0 0 30px rgba(220, 38, 38, 0.6);
+  }
+}
+
+@keyframes pulse-glow {
+  0%, 100% {
+    box-shadow: 0 0 0 0 rgba(220, 38, 38, 0.4);
+  }
+  50% {
+    box-shadow: 0 0 0 10px rgba(220, 38, 38, 0);
+  }
+}
+
+/* Animation Classes */
+.animate-fade-in-up {
+  animation: fadeInUp 0.6s ease-out;
+}
+
+.animate-fade-in-left {
+  animation: fadeInLeft 0.6s ease-out;
+}
+
+.animate-fade-in-right {
+  animation: fadeInRight 0.6s ease-out;
+}
+
+.animate-shimmer {
+  animation: shimmer 2s infinite;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+  background-size: 200px 100%;
+}
+
+.animate-float {
+  animation: float 3s ease-in-out infinite;
+}
+
+.animate-glow {
+  animation: glow 2s ease-in-out infinite;
+}
+
+.animate-pulse-glow {
+  animation: pulse-glow 2s infinite;
+}
+
+/* Enhanced Component Styles */
+.glass-effect {
+  background: rgba(30, 41, 59, 0.8);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(71, 85, 105, 0.3);
+}
+
+.gradient-primary {
+  background: linear-gradient(135deg, var(--primary-600), var(--secondary-600));
+}
+
+.gradient-secondary {
+  background: linear-gradient(135deg, var(--secondary-500), var(--primary-500));
+}
+
+.gradient-accent {
+  background: linear-gradient(135deg, var(--accent-500), var(--primary-500));
+}
+
+.text-gradient {
+  background: linear-gradient(135deg, var(--primary-400), var(--secondary-400));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Enhanced Card Hover Effects */
+.card-hover-enhanced {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  overflow: hidden;
+}
+
+.card-hover-enhanced::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+  transition: left 0.5s;
+}
+
+.card-hover-enhanced:hover::before {
+  left: 100%;
+}
+
+.card-hover-enhanced:hover {
+  transform: translateY(-8px) scale(1.02);
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+}
+
+/* Enhanced Button Styles */
+.btn-modern {
+  position: relative;
+  overflow: hidden;
+  transition: all 0.3s ease;
+  background: linear-gradient(135deg, var(--primary-600), var(--secondary-600));
+}
+
+.btn-modern::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+  transition: left 0.5s;
+}
+
+.btn-modern:hover::before {
+  left: 100%;
+}
+
+.btn-modern:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+}
+
+/* Loading States */
+.loading-skeleton {
+  background: linear-gradient(90deg, #374151 25%, #4b5563 50%, #374151 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite;
+}
+
+/* Enhanced Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--dark-surface);
+}
+
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(135deg, var(--primary-600), var(--secondary-600));
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(135deg, var(--primary-500), var(--secondary-500));
+}
+
+/* Focus States */
+.focus-ring {
+  @apply focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2 focus:ring-offset-slate-900;
+}
+
+/* Custom Utilities */
+.backdrop-blur-glass {
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+}
+
+.border-gradient {
+  border: 1px solid transparent;
+  background: linear-gradient(var(--dark-surface), var(--dark-surface)) padding-box,
+              linear-gradient(135deg, var(--primary-600), var(--secondary-600)) border-box;
+}
+
+/* Status Indicators with Glow */
+.status-indicator {
+  position: relative;
+}
+
+.status-indicator::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  animation: pulse-glow 2s infinite;
+}
+
+.status-active::after {
+  background: rgba(34, 197, 94, 0.3);
+}
+
+.status-pending::after {
+  background: rgba(251, 191, 36, 0.3);
+}
+
+.status-error::after {
+  background: rgba(239, 68, 68, 0.3);
+}

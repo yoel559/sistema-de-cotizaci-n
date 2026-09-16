@@ -1,0 +1,57 @@
+%% Diagrama Entidad-Relación Físico (clientes, usuarios, productos, cotizaciones, detalle_cotizacion, estados)
+erDiagram
+  clientes {
+    INT id_cliente PK
+    VARCHAR(100) nombres
+    VARCHAR(100) apellidos
+    VARCHAR(20) documento
+    VARCHAR(20) telefono
+    VARCHAR(100) correo
+    VARCHAR(200) direccion
+  }
+
+  usuarios {
+    INT id_usuario PK
+    VARCHAR(100) nombre_usuario
+    VARCHAR(50) rol
+    VARCHAR(100) correo
+    VARCHAR(255) contrasena
+  }
+
+  productos {
+    INT id_producto PK
+    VARCHAR(150) nombre_producto
+    VARCHAR(255) descripcion
+    DECIMAL_12_2 precio_unitario
+    BOOLEAN activo
+  }
+
+  estados {
+    INT id_estado PK
+    VARCHAR(20) nombre_estado
+  }
+
+  cotizaciones {
+    INT id_cotizacion PK
+    VARCHAR(20) numero_cotizacion
+    DATE fecha_cotizacion
+    DECIMAL_12_2 total
+    INT id_cliente FK
+    INT id_usuario FK
+    INT id_estado FK
+  }
+
+  detalle_cotizacion {
+    INT id_detalle PK
+    INT id_cotizacion FK
+    INT id_producto FK
+    DECIMAL_10_2 cantidad
+    DECIMAL_12_2 precio_unitario
+    DECIMAL_12_2 subtotal
+  }
+
+  clientes ||--o{ cotizaciones : tiene
+  usuarios ||--o{ cotizaciones : registra
+  estados  ||--o{ cotizaciones : estado
+  cotizaciones ||--o{ detalle_cotizacion : detalla
+  productos ||--o{ detalle_cotizacion : item
